@@ -5,6 +5,7 @@ export default class Game {
     birdModel
     rectObstacleModels = []
     speed
+    playerName 
 
     constructor(birdModel, rectObstacleModels = [], score = 0, speed = config.GAME_SPEED) {
         this.birdModel = birdModel

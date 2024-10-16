@@ -18,7 +18,6 @@ export default class BirdEntity {
         this._context.arc(this._birdModel.xCenter, this._birdModel.yCenter, this._birdModel.radius, 0, 2 * Math.PI, false);
         this._context.fillStyle = 'skyblue'
         this._context.fill()
-        this._context.stroke()
         this._context.closePath()
     }
 
