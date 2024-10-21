@@ -6,7 +6,6 @@ class Controller {
     init() {
         stage.init()
         startMenuControler.init()
-        // ScoreBoardController.init()
     }
 }
 

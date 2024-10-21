@@ -23,10 +23,6 @@ class GameController {
     init(game = null) {
         GameView.render()
         GameView.addPauseGameHandler(this.pauseGame.bind(this))
-        console.log(game)
-
-        // AlertAskNameController.init()
-        // AlertAskNameController.addFinishHandler(this.finishHandler.bind(this))
 
         startCapturing()
         if(!game) {
@@ -67,13 +63,9 @@ class GameController {
     gameLoop() {
         this.handleCollision()
         if (this._isPause) return
-
         GameView.clearCanvas()
-
         this.createRectObstacle()
-
         this.update()
-
         this._animationId = requestAnimationFrame(this.gameLoop.bind(this))
     }
 
@@ -152,15 +144,12 @@ class GameController {
     }
 
     pauseGame(e) {
-        console.log(e.key)
         if(e.key !== 'Escape') return
-        console.log(e.key)
         localStorage.setItem('prevGame', JSON.stringify(stage.game))
         this.close()
     }
 
     close() {
-        console.log('er')
         gameView.close()
         this.stopAnimation()
         this._allEntities = []
@@ -169,6 +158,10 @@ class GameController {
         this._gameEntity = null
         this._createRectOnbstacleTimeout = null
         startMenuControler.init()
+    }
+
+    closeModel() {
+        // for this perpose you can delete my history and you may continue live without me hebbbbb
     }
 }
 

@@ -18,7 +18,7 @@ function isLike(points) {
     let angle = Math.abs(rightLine.angleBetween(tumpVector))
     angle = Math.min(Math.PI - angle, angle)
 
-    if(angle > Math.PI/8) return false
+    if(angle > Math.PI/6) return false
     return true
 }
 
@@ -46,12 +46,19 @@ async function startCapturing() {
     });
     
     hands.onResults(onResults);
+
+    let lastTimeout = null;
     
     const camera = new Camera(videoElement, {
-        onFrame: async() => {
-            await hands.send({
-                image: videoElement
-            });
+        onFrame: async function() {
+            if(!lastTimeout) {
+                lastTimeout = setTimeout(async function() {
+                    await hands.send({
+                        image: videoElement
+                    });
+                    lastTimeout = null
+                }, 100)
+            }
         },
         width: 640,
         height: 480
