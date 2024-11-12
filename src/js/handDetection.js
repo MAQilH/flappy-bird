@@ -68,7 +68,7 @@ async function startCapturing() {
     async function onResults(results) {
         if (results.multiHandLandmarks && [...results.multiHandLandmarks].length > 0) {
             const landmarks = results.multiHandLandmarks[0]
-            tumpVectors = []
+            let tumpVectors = []
             for(let index = 1; index < 5; index++){
                 tumpVectors.push(vector.createNew(landmarks[index]))
             }
