@@ -9,7 +9,6 @@ class AlertAskNameController {
 
     finish(username) {
         alertAskNameView.close()
-        console.log('ad')
         this._finishHandler(username)
     }
 

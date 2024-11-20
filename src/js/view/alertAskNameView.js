@@ -15,7 +15,8 @@ class AlertAskNameView {
         this._alert = document.querySelector('.alert')
         this._submitBtn = this._alert.querySelector('.alert-submit__btn')
         this._alertInput = this._alert.querySelector('.alert-input')
-        
+        this._alertInput.focus()
+
         this._submitBtn.addEventListener('click', function(e){
             e.preventDefault()
             const username = this._alertInput.value

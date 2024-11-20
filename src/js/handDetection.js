@@ -28,10 +28,29 @@ function isDisLike(points) {
     )
 }
 
+function isHorizontal(littleFingureLandmark) {
+    
+    if(!vector.checkInLine(littleFingureLandmark)) {
+        return false
+    }
+    
+    for(let landmarkIndex = 1; landmarkIndex < littleFingureLandmark.length; landmarkIndex++) {
+        if(littleFingureLandmark[landmarkIndex-1].x > littleFingureLandmark[landmarkIndex].x) {
+            return false
+        }
+    }
+
+    const littleFingureVector = littleFingureLandmark[littleFingureLandmark.length - 1].sub(littleFingureLandmark[0])
+    const rightLine = new vector(-1, 0, 0)
+    let angle = Math.abs(rightLine.angleBetween(littleFingureVector))
+    angle = Math.min(Math.PI - angle, angle)
+
+    return angle < Math.PI/4
+}
+
 async function startCapturing() {
 
     const videoElement = document.querySelector('.input_video');
-    console.log(videoElement)
     
     const hands = new Hands({
         locateFile: (file) => {
@@ -74,6 +93,14 @@ async function startCapturing() {
             }
             inputHandler.keys['KeyW'] = isLike(tumpVectors)
             inputHandler.keys['KeyS'] = isDisLike(tumpVectors)
+
+
+            const littleFingureLandmarkId = [17, 18, 19, 20]
+            const littleFingureVectors = littleFingureLandmarkId.map(landmarkId => {
+                return vector.createNew(landmarks[landmarkId])
+            }) 
+
+            inputHandler.keys['KeyF'] = isHorizontal(littleFingureVectors)
         }
     }
 }

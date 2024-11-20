@@ -127,6 +127,7 @@ class GameController {
     }
 
     checkFalpyCollisionWithRectObstacle() {
+        if(stage.game.birdModel.hidden) return false
         return this._allEntities.some(entity => {
             if (entity instanceof RectangelObstacleEntity) {
                 return util.circleRectCollision(

@@ -27,6 +27,7 @@ export default class BirdEntity {
         } else if (inputHandler.isKeyPressed('KeyS')) {
             this._birdMoveDown()
         }
+        this._birdHide(inputHandler.isKeyPressed('KeyF'))
     }
 
     _birdMoveDown() {
@@ -35,5 +36,9 @@ export default class BirdEntity {
 
     _birdMoveUp() {
         this._birdModel.yCenter = Math.max(config.BIRD_RADIUS * 1.5, this._birdModel.yCenter - this._birdModel.speed)
+    }
+
+    _birdHide(hidden) {
+        this._birdModel.hidden = hidden
     }
 }
