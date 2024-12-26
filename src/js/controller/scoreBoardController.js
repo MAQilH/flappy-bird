@@ -9,14 +9,15 @@ class ScoreBoardController {
         scoreBoardView.addBackHandler(this.backToStartMenu.bind(this))
         
         let sortedScore = [...stage.scoreBoard]
-        sortedScore.sort((a, b) => a[1] < b[1])
+        sortedScore = sortedScore.sort((a, b) => {
+            return a[1] < b[1] ? 1: -1
+        })
         stage.scoreBoard = stage.scoreBoard
 
         sortedScore.forEach((record, index) => {
             const [playerName, score] = record
             scoreBoardView.insertTableRow(index + 1, playerName, Math.floor(score))
         })
-
 
     }
 
